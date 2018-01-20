@@ -85,6 +85,13 @@ namespace MonikaBot.FunModule
             {
                 cmdArgs.Channel.SendMessageAsync("I actually have a twitter account believe it or not! My username is @lilmonix3");
             }), this);
+
+            manager.AddCommand(new CommandStub("natsuki", "Has Monika chat about Natsuki", "Ask Monika her thoughts on Natsuki!", PermissionType.User, cmdArgs =>
+            {
+                cmdArgs.Channel.SendMessageAsync("I love her cupcakes! She really can make some good food! I don't know what I was thinking when I deleted her... How could I survive without her baking?");
+                cmdArgs.Channel.SendMessageAsync("...Now that I think about it... Who needs her cupcakes when I have you? ❤️");
+            }), this);
+
         }
     }
 }
