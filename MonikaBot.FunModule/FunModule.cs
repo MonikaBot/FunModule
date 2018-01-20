@@ -81,6 +81,10 @@ namespace MonikaBot.FunModule
             {
                 cmdArgs.Channel.SendMessageAsync("The answer to life, the universe, and everything.");
             }, trigger: CommandTrigger.BotMentioned), this);
+            manager.AddCommand(new CommandStub("twitter", "Displays Monika's Twitter account", "Ask Monika about Twitter!", PermissionType.User, cmdArgs =>
+            {
+                cmdArgs.Channel.SendMessageAsync("I actually have a twitter account believe it or not! My username is @lilmonix3");
+            }), this);
         }
     }
 }
