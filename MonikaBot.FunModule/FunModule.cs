@@ -101,7 +101,7 @@ namespace MonikaBot.FunModule
             {
                 cmdArgs.Channel.TriggerTypingAsync();
                 Thread.Sleep(3000);
-                cmdArgs.Channel.SendMessageAsync("She maybe quiet but trust me, she's one of the sweetest members of the literature club!");
+                cmdArgs.Channel.SendMessageAsync("She may be quiet but trust me, she's one of the sweetest members of the literature club!");
                 cmdArgs.Channel.TriggerTypingAsync();
                 Thread.Sleep(3000);
                 cmdArgs.Channel.SendMessageAsync("...She has this weird thing with knives though...");
