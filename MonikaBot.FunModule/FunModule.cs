@@ -113,7 +113,18 @@ namespace MonikaBot.FunModule
                 Thread.Sleep(3000);
                 cmdArgs.Channel.SendMessageAsync("Or you can continue to chat with me instead! 😉");
             }), this);
-            
+            manager.AddCommand(new CommandStub("sayori", "Has Monika talk about Sayori", "Ask Monika on her thoughts on Sayori!", PermissionType.User, cmdArgs =>
+            {
+                cmdArgs.Channel.TriggerTypingAsync();
+                Thread.Sleep(3000);
+                cmdArgs.Channel.SendMessageAsync("My trusty vice president! She'll never leave you hanging when it comes to the club!");
+                cmdArgs.Channel.TriggerTypingAsync();
+                Thread.Sleep(3000);
+                cmdArgs.Channel.SendMessageAsync("She is kinda... *special* though...");
+                cmdArgs.Channel.TriggerTypingAsync();
+                Thread.Sleep(3000);
+                cmdArgs.Channel.SendMessageAsync("But nothing usually brings her down! She's just a beaming ray of sunshine!");
+            }), this);
         }
     }
 }
