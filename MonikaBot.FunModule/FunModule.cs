@@ -55,11 +55,11 @@ namespace MonikaBot.FunModule
 
         public override void Install(CommandsManager manager)
         {
-            manager.AddCommand(new CommandStub("f", "Pay respect.", "Press f", PermissionType.User, 0, cmdArgs =>
+            manager.AddCommand(new CommandStub("f", "Pay respect.", "Press f", cmdArgs =>
             {
                 cmdArgs.Channel.SendMessageAsync($"{cmdArgs.Author.Username} has paid their respects {FEmojis[rng.Next(0, FEmojis.Length - 1)]}");
             }), this);
-            manager.AddCommand(new CommandStub("orange", "Orangifies your text.", "Discord only.", PermissionType.User, 1, cmdArgs =>
+            manager.AddCommand(new CommandStub("orange", "Orangifies your text.", "Discord only.", cmdArgs =>
             {
                 if (cmdArgs.FromIntegration.ToLower().Trim() == "discord")
                 {
@@ -67,28 +67,28 @@ namespace MonikaBot.FunModule
                 }
                 else
                     cmdArgs.Channel.SendMessageAsync($"This command is only available on Discord!");
-            }), this);
-            manager.AddCommand(new CommandStub("nf", "Pay no respect.", "Press nf", PermissionType.User, cmdArgs =>
+            }, argCount: 1), this);
+            manager.AddCommand(new CommandStub("nf", "Pay no respect.", "Press nf", cmdArgs =>
             {
                 cmdArgs.Channel.SendMessageAsync($"{cmdArgs.Author.Username} refuses to pay respect. {FEmojis[manager.rng.Next(0, FEmojis.Length - 1)]}");
             }), this);
-            manager.AddCommand(new CommandStub("8ball", "Have your fortune told.", "8ball <your message here>", PermissionType.User, cmdArgs =>
+            manager.AddCommand(new CommandStub("8ball", "Have your fortune told.", "8ball <your message here>", cmdArgs =>
             {
                 manager.rng.Next(0, EightballMessages.Length);
                 manager.rng.Next(0, EightballMessages.Length);
                 int index = manager.rng.Next(0, EightballMessages.Length);
                 cmdArgs.Channel.SendMessageAsync($"{cmdArgs.Author.Mention}: **{EightballMessages[index]}**");
             }, trigger: CommandTrigger.BotMentioned), this);
-            manager.AddCommand(new CommandStub("42", "..", "...", PermissionType.User, 0, cmdArgs =>
+            manager.AddCommand(new CommandStub("42", "..", "...", cmdArgs =>
             {
                 cmdArgs.Channel.SendMessageAsync("The answer to life, the universe, and everything.");
             }, trigger: CommandTrigger.BotMentioned), this);
-            manager.AddCommand(new CommandStub("twitter", "Displays Monika's Twitter account", "Ask Monika about Twitter!", PermissionType.User, cmdArgs =>
+            manager.AddCommand(new CommandStub("twitter", "Displays Monika's Twitter account", "Ask Monika about Twitter!", cmdArgs =>
             {
                 cmdArgs.Channel.SendMessageAsync("I actually have a twitter account believe it or not! My username is @lilmonix3");
             }), this);
 
-            manager.AddCommand(new CommandStub("natsuki", "Has Monika chat about Natsuki", "Ask Monika her thoughts on Natsuki!", PermissionType.User, cmdArgs =>
+            manager.AddCommand(new CommandStub("natsuki", "Has Monika chat about Natsuki", "Ask Monika her thoughts on Natsuki!", cmdArgs =>
             {
                 cmdArgs.Channel.TriggerTypingAsync();
                 Thread.Sleep(5000);
@@ -97,7 +97,7 @@ namespace MonikaBot.FunModule
                 Thread.Sleep(3000);
                 cmdArgs.Channel.SendMessageAsync("...Now that I think about it... Who needs her cupcakes when I have you? ❤️");
             }), this);
-            manager.AddCommand(new CommandStub("yuri", "Has Monika chat about Yuri", "Ask Monika her thoughts on Yuri!", PermissionType.User, cmdArgs =>
+            manager.AddCommand(new CommandStub("yuri", "Has Monika chat about Yuri", "Ask Monika her thoughts on Yuri!", cmdArgs =>
             {
                 cmdArgs.Channel.TriggerTypingAsync();
                 Thread.Sleep(3000);
@@ -113,7 +113,7 @@ namespace MonikaBot.FunModule
                 Thread.Sleep(3000);
                 cmdArgs.Channel.SendMessageAsync("Or you can continue to chat with me instead! 😉");
             }), this);
-            manager.AddCommand(new CommandStub("sayori", "Has Monika talk about Sayori", "Ask Monika on her thoughts on Sayori!", PermissionType.User, cmdArgs =>
+            manager.AddCommand(new CommandStub("sayori", "Has Monika talk about Sayori", "Ask Monika on her thoughts on Sayori!", cmdArgs =>
             {
                 cmdArgs.Channel.TriggerTypingAsync();
                 Thread.Sleep(3000);
@@ -126,5 +126,8 @@ namespace MonikaBot.FunModule
                 cmdArgs.Channel.SendMessageAsync("But nothing usually brings her down! She's just a beaming ray of sunshine!");
             }), this);
         }
+
+        public override void ShutdownModule(CommandsManager managers)
+        {}
     }
 }
