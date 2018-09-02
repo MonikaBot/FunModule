@@ -59,15 +59,15 @@ namespace MonikaBot.FunModule
             {
                 cmdArgs.Channel.SendMessageAsync($"{cmdArgs.Author.Username} has paid their respects {FEmojis[rng.Next(0, FEmojis.Length - 1)]}");
             }), this);
+
             manager.AddCommand(new CommandStub("orange", "Orangifies your text.", "Discord only.", cmdArgs =>
             {
-                if (cmdArgs.FromIntegration.ToLower().Trim() == "discord")
+                if (cmdArgs.Args.Count > 0)
                 {
                     cmdArgs.Channel.SendMessageAsync($"```fix\n{cmdArgs.Args[0]}\n```");
                 }
-                else
-                    cmdArgs.Channel.SendMessageAsync($"This command is only available on Discord!");
-            }, argCount: 1), this);
+            }, argCount: 1, minPerm: PermissionType.User), this);
+
             manager.AddCommand(new CommandStub("nf", "Pay no respect.", "Press nf", cmdArgs =>
             {
                 cmdArgs.Channel.SendMessageAsync($"{cmdArgs.Author.Username} refuses to pay respect. {FEmojis[manager.rng.Next(0, FEmojis.Length - 1)]}");
